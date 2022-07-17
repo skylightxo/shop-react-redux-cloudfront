@@ -18,7 +18,7 @@ export default function PageProductImport() {
 
   return (
     <div className={classes.content}>
-      <Box display="flex" alignItems="center">
+      {/* <Box display="flex" alignItems="center">
         <CSVFileImport
           url={`${API_PATHS.import}/import`}
           title="Import Products CSV"
@@ -32,7 +32,7 @@ export default function PageProductImport() {
         >
           create product
         </Button>
-      </Box>
+      </Box> */}
       <ProductsTable />
     </div>
   );
