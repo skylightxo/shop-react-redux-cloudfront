@@ -29,7 +29,7 @@ export default function CartItems({ items, isEditable }: CartItemsProps) {
   const classes = useStyles();
 
   const totalPrice: number = items.reduce(
-    (total, item) => item.count * parseFloat(item.product.price) + total,
+    (total, item) => item.count * item.product.price + total,
     0
   );
 
@@ -45,9 +45,7 @@ export default function CartItems({ items, isEditable }: CartItemsProps) {
             />
             <Typography variant="body2">
               {formatAsPrice(cartItem.product.price)} x {cartItem.count} ={" "}
-              {formatAsPrice(
-                (parseFloat(cartItem.product.price) * cartItem.count).toString()
-              )}
+              {formatAsPrice(cartItem.product.price * cartItem.count)}
             </Typography>
           </ListItem>
         ))}
@@ -58,7 +56,7 @@ export default function CartItems({ items, isEditable }: CartItemsProps) {
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            {formatAsPrice(totalPrice.toString())}
+            {formatAsPrice(totalPrice)}
           </Typography>
         </ListItem>
       </List>
