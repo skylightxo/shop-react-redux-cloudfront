@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const AUTHORIZATION_HEADER = "Authorization";
+const AUTHORIZATION_TOKEN = "authorization_token";
+
 type CSVFileImportProps = {
   url: string;
   title: string;
@@ -34,6 +37,13 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
   };
 
   const uploadFile = async (e: any) => {
+    const headers: Record<string, any> = {};
+
+    if (localStorage.getItem(AUTHORIZATION_TOKEN)) {
+      headers[AUTHORIZATION_HEADER] = `Basic ${localStorage.getItem(
+        AUTHORIZATION_TOKEN
+      )}`;
+    }
     // Get the presigned URL
     const response = await axios({
       method: "GET",
